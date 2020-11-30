@@ -1,5 +1,5 @@
 #include <iostream>
-#inclue <functional>
+#include <functional>
 
 int main()
 {
