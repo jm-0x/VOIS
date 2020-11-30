@@ -1,10 +1,12 @@
 # Directories
 **bin/
+vendors/
 
 #Files
 *.user
 
 # Visual Studio
+.vscode/
 .vs/
 *.sln
 *.vcxproj
