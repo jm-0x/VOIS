@@ -1,9 +1,8 @@
-    objdir("bin-obj/${prj.name}/" .. output)
 workspace "ChatApplication"
     architecture "x86_64"
     configurations {"Debug", "Realse"}
 
-output = "${cfg.system}/${cfg.buildcfg}"
+ output = "${cfg.system}/${cfg.buildcfg}"
 
 project "Client"
     kind "ConsoleApp"
@@ -15,12 +14,12 @@ project "Client"
 
     files 
     {
-        "${prj.location}/src/**.h"
-        "${prj.location}/src/**.cpp"
+        "${prj.location}/src/**.h",
+        "${prj.location}/src/**.cpp",
     }
 
     includedirs { "vendors/asio" }
-    
+
 project "Server"
     kind "ConsoleApp"
     language "C++"
@@ -32,7 +31,7 @@ project "Server"
     files 
     {
         "${prj.location}/src/**.h",
-        "${prj.location}/src/**.cpp"
+        "${prj.location}/src/**.cpp",
     }
 
     includedirs { "vendors/asio" }
