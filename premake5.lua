@@ -18,6 +18,7 @@ project "Client"
     kind "ConsoleApp"
     language "C++"
     location "Client"
+    cppdialect "C++17"
 
     targetdir ("bin/%{prj.name}/" .. output)
     objdir("bin-obj/%{prj.name}/" .. output)
@@ -34,14 +35,15 @@ project "Server"
     kind "ConsoleApp"
     language "C++"
     location "Server"
+    cppdialect "C++17"
 
     targetdir ("bin/%{prj.name}/" .. output)
     objdir("bin-obj/%{prj.name}/" .. output)
     
     files 
     {
-        "%{prj.location}/src/**.h",
         "%{prj.location}/src/**.cpp",
+        "%{prj.location}/src/**.h",
     }
 
     includedirs { "vendors/asio" }
