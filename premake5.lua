@@ -29,7 +29,7 @@ project "Client"
         "%{prj.location}/src/**.cpp",
     }
 
-    includedirs { "vendors/asio" }
+    includedirs { "Dependencies/asio" }
 
 project "Server"
     kind "ConsoleApp"
@@ -46,4 +46,4 @@ project "Server"
         "%{prj.location}/src/**.h",
     }
 
-    includedirs { "vendors/asio" }
+    includedirs { "Dependencies/asio/include","Dependencies/spdlog/include" }
