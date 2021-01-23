@@ -1,5 +1,5 @@
 # VOIS
-This repository contains the full source for a VOIS, a final coursework (2021).   
+This repository contains the full source for a final coursework (2021).   
 
 # Components
 A list of components **VOIS** consist of
