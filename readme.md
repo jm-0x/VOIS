@@ -1,6 +1,5 @@
 <p align="center"><img src="https://imgur.com/uefLuui.png"></p>
 
-# VOIS
 VOIS (VOIS Obstructs Information Suppression) is the result of a final coursework in 2021
  
 # Components
