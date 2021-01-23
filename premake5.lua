@@ -29,7 +29,7 @@ project "Client"
         "%{prj.location}/src/**.cpp",
     }
 
-    includedirs { "Dependencies/asio" }
+    includedirs { "Dependencies/asio/include" }
 
 project "Server"
     kind "ConsoleApp"
