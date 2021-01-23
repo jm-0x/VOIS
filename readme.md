@@ -1,6 +1,6 @@
 <p align="center"><img src="https://imgur.com/uefLuui.png"></p>
 
-VOIS - **VO**IS **O**bstructs **I**nformation **S**uppression is a project for a final coursework(2021)
+VOIS - **V**OIS **O**bstructs **I**nformation **S**uppression is a project for a final coursework(2021)
  
 # Components
 A list of components **VOIS** consist of
