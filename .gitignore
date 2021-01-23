@@ -1,5 +1,6 @@
 # Directories
-**bin/
+bin/
+bin-obj/
 
 #Files
 *.user
@@ -11,3 +12,6 @@
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+
+# Binaries
+premake5.exe
