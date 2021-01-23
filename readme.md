@@ -1,4 +1,7 @@
 # VOIS
+
+<p align="center"><img src="https://imgur.com/uefLuui.png"></p>
+
 This repository contains the full source for a final coursework (2021).   
 
 # Components
