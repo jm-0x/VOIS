@@ -1,7 +1,8 @@
 <p align="center"><img src="https://imgur.com/uefLuui.png"></p>
 
-<p align="center>This repository contains the full source for a final coursework (2021).</p>   
-
+# VOIS
+VOIS (VOIS Obstructs Information Suppression) is the result of a final coursework in 2021
+ 
 # Components
 A list of components **VOIS** consist of
 * [Client](https://github.com/Joonitoi/VOIS/tree/master/Client/src)
