@@ -1,69 +1,41 @@
 #include <iostream>
 #include <asio.hpp>
-#include <functional>
-class printer
+#include "Client/Client.hpp"
+
+int main(int argc, char* argv[])
 {
-public:
-    printer(asio::io_context& io)
-        : strand_(asio::make_strand(io)),
-        timer1_(io, asio::chrono::seconds(1)),
-        timer2_(io, asio::chrono::seconds(1)),
-        count_(0)
+    try
     {
-        timer1_.async_wait(asio::bind_executor(strand_,
-            std::bind(&printer::print1, this)));
-
-        timer2_.async_wait(asio::bind_executor(strand_,
-            std::bind(&printer::print2, this)));
-    }
-
-    ~printer()
-    {
-        std::cout << "Final count is " << count_ << std::endl;
-    }
-
-    void print1()
-    {
-        if (count_ < 10)
+        if (argc != 3)
         {
-            std::cout << "Timer 1: " << count_ << std::endl;
-            ++count_;
-
-            timer1_.expires_at(timer1_.expiry() + asio::chrono::seconds(1));
-
-            timer1_.async_wait(asio::bind_executor(strand_,
-                std::bind(&printer::print1, this)));
+            std::cerr << "Usage: chat_client <host> <port>\n";
+            return 1;
         }
-    }
+        asio::io_context io_context;
 
-    void print2()
-    {
-        if (count_ < 10)
+        asio::ip::tcp::resolver resolver(io_context);
+        auto endpoints = resolver.resolve(argv[1], argv[2]);
+        chat_client client(io_context, endpoints);
+
+        std::thread t([&io_context]() {io_context.run(); });
+        char line[chat_message::max_body_length + 1];
+        while (std::cin.getline(line, chat_message::max_body_length + 1))
         {
-            std::cout << "Timer 2: " << count_ << std::endl;
-            ++count_;
-
-            timer2_.expires_at(timer2_.expiry() + asio::chrono::seconds(1));
-
-            timer2_.async_wait(asio::bind_executor(strand_,
-                std::bind(&printer::print2, this)));
+            chat_message msg;
+            msg.body_length(std::strlen(line));
+            std::memcpy(msg.body(), line, msg.body_length());
+            msg.encode_header();
+            client.write(msg);
         }
+
+        client.close();
+        t.join();
     }
+    catch (std::exception& ex)
+    {
+        std::cerr << "Exception: " << ex.what() << "\n";
 
-private:
-    asio::strand<asio::io_context::executor_type> strand_;
-    asio::steady_timer timer1_;
-    asio::steady_timer timer2_;
-    int count_;
-};
-
-int main()
-{
-    asio::io_context io;
-    printer p(io);
-    //asio::thread t(std::bind(static_cast<std::size_t(asio::io_context::*)()>(&asio::io_context::run), &io));
-    io.run();
-    //t.join();
+    }
 
     return 0;
 }
